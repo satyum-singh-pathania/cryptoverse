@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>CryptoVerse — Documentation & Report</title>
+<style>
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1f2530; line-height: 1.55; font-size: 11pt; margin: 0; }
+  h1, h2, h3, h4 { line-height: 1.25; break-after: avoid; }
+  h1 { font-size: 20pt; color: #b8770a; border-bottom: 3px solid #f7a600; padding-bottom: 6px; margin: 0 0 14px; }
+  h2 { font-size: 15pt; color: #1a2030; margin: 26px 0 10px; padding-left: 12px; border-left: 4px solid #f7a600; }
+  h3 { font-size: 12.5pt; color: #2b3242; margin: 18px 0 8px; }
+  p { margin: 8px 0; }
+  a { color: #b8770a; text-decoration: none; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  code { font-family: "Cascadia Code", Consolas, monospace; background: #f1f3f7; border: 1px solid #e3e7ef; border-radius: 4px; padding: 1px 5px; font-size: 9.5pt; color: #b8770a; }
+  pre { background: #0f131b; color: #e7e9ee; border-radius: 8px; padding: 14px 16px; overflow-x: auto; break-inside: avoid; font-size: 9pt; }
+  pre code { background: none; border: none; color: #e7e9ee; padding: 0; }
+  blockquote { margin: 12px 0; padding: 10px 16px; background: #fff8ea; border-left: 4px solid #f7a600; color: #4a4233; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; break-inside: avoid; }
+  th, td { border: 1px solid #e3e7ef; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #fdf2da; color: #1a2030; font-weight: 700; }
+  tr:nth-child(even) td { background: #fafbfd; }
+  hr { border: none; border-top: 1px solid #e3e7ef; margin: 20px 0; }
+  .page-break { break-after: page; }
+  .cover { height: 250mm; display: flex; flex-direction: column; justify-content: center; }
+  .cover-badge { width: 84px; height: 84px; border-radius: 22px; background: linear-gradient(135deg, #f7a600, #ffce54); display: flex; align-items: center; justify-content: center; font-size: 46px; font-weight: 800; color: #0b0e14; box-shadow: 0 10px 30px rgba(247,166,0,0.35); }
+  .cover h1 { font-size: 44pt; border: none; margin: 28px 0 6px; color: #1a2030; letter-spacing: -1px; }
+  .cover .accent { background: linear-gradient(135deg, #f7a600, #ffb929); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .cover .subtitle { font-size: 17pt; color: #5b6473; margin: 0; }
+  .cover .rule { width: 120px; height: 5px; background: linear-gradient(90deg, #f7a600, #ffce54); border-radius: 3px; margin: 26px 0; }
+  .cover .meta { color: #8a93a3; font-size: 11pt; }
+  .cover .desc { margin-top: 18px; max-width: 460px; color: #4a5160; }
+  .toc { background: #fafbfd; border: 1px solid #e3e7ef; border-radius: 10px; padding: 8px 26px; }
+  .toc h2 { border: none; padding: 0; margin: 16px 0 8px; }
+  .doc-tag { display: inline-block; background: #fdf2da; color: #b8770a; font-size: 9pt; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 8px; }
+</style></head>
+<body>
+
+  <section class="cover page-break">
+    <div class="cover-badge">₿</div>
+    <h1>Crypto<span class="accent">Verse</span></h1>
+    <p class="subtitle">Project Documentation &amp; Report</p>
+    <div class="rule"></div>
+    <p class="desc">A real-time cryptocurrency dashboard built with React, Vite, and Ant Design — live prices, charts, portfolio tracking, and market insights.</p>
+    <p class="meta">Version 1.0 · June 2026</p>
+  </section>
+
+  <section class="toc page-break">
+    <h1>Contents</h1>
+    <h2>Part I — Project Report</h2>
+    <ol><li><a href="#1-executive-summary">1. Executive Summary</a></li><li><a href="#2-what-the-project-is">2. What the Project Is</a></li><li><a href="#3-work-completed">3. Work Completed</a></li><li><a href="#4-technology-stack">4. Technology Stack</a></li><li><a href="#5-key-metrics-before-vs-after">5. Key Metrics — Before vs After</a></li><li><a href="#6-known-limitations">6. Known Limitations</a></li><li><a href="#7-future-roadmap">7. Future Roadmap</a></li><li><a href="#8-conclusion">8. Conclusion</a></li></ol>
+    <h2>Part II — Technical Documentation</h2>
+    <ol><li><a href="#1-getting-started">1. Getting Started</a></li><li><a href="#2-project-structure">2. Project Structure</a></li><li><a href="#3-architecture-data-flow">3. Architecture & Data Flow</a></li><li><a href="#4-state-management">4. State Management</a></li><li><a href="#5-api-layer">5. API Layer</a></li><li><a href="#6-theming-system">6. Theming System</a></li><li><a href="#7-components-reference">7. Components Reference</a></li><li><a href="#8-key-feature-logic">8. Key Feature Logic</a></li><li><a href="#9-routing">9. Routing</a></li><li><a href="#10-environment-variables">10. Environment Variables</a></li><li><a href="#11-how-to-extend">11. How to Extend</a></li><li><a href="#12-build-deploy">12. Build & Deploy</a></li></ol>
+  </section>
+
+  <section class="page-break">
+    <span class="doc-tag">Part I · Report</span>
+    <h1 id="cryptoverse-project-report">CryptoVerse — Project Report</h1>
+<p>A high-level overview of what the project is, the work carried out, the technology behind it, and where it stands today.</p>
+<hr>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
+<p><strong>CryptoVerse</strong> is a real-time cryptocurrency dashboard built with React. It lets users track live prices and charts for hundreds of coins, read market news, browse exchanges, manage a personal portfolio with live profit/loss, keep a watchlist, and gauge overall market sentiment.</p>
+<p>The project began as an ageing Create React App demo with security issues and deprecated dependencies. It has since been <strong>modernised, secured, redesigned, and significantly expanded</strong> into a feature-rich, installable Progressive Web App.</p>
+<p>Headline outcomes:</p>
+<ul><li>Security vulnerabilities reduced from <strong>68 to 0</strong>.</li><li>Build tooling migrated from the deprecated Create React App to <strong>Vite</strong>.</li><li>Dependency count cut from roughly <strong>1,500 to 524</strong> packages.</li><li>A complete <strong>dark/light themed UI</strong> with a gold accent identity.</li><li>Eight major <strong>new user features</strong> (portfolio, watchlist, live prices, and more).</li></ul>
+<hr>
+<h2 id="2-what-the-project-is">2. What the Project Is</h2>
+<p>CryptoVerse is a single-page application (SPA) that talks directly to public crypto data APIs from the browser. There is no custom backend; user data (portfolio, watchlist, preferences) is stored locally in the browser.</p>
+<p>Core sections:</p>
+<ul><li><strong>Home</strong> — global market stats, Fear &amp; Greed index, top gainers/losers, a</li></ul>
+<p>  preview of the top coins and latest news.</p>
+<ul><li><strong>Cryptocurrencies</strong> — searchable, sortable list of coins with live prices</li></ul>
+<p>  and trend sparklines.</p>
+<ul><li><strong>Coin details</strong> — full statistics, an interactive price-history chart, a</li></ul>
+<p>  currency converter, and links.</p>
+<ul><li><strong>Portfolio</strong> — track holdings and live profit/loss with an allocation chart.</li><li><strong>Watchlist</strong> — a personal shortlist of starred coins.</li><li><strong>Exchanges</strong> — a ranked list of crypto exchanges.</li><li><strong>News</strong> — filterable crypto news feed.</li></ul>
+<hr>
+<h2 id="3-work-completed">3. Work Completed</h2>
+<p>The project was delivered in four phases.</p>
+<h3 id="phase-1-audit-modernisation">Phase 1 — Audit &amp; Modernisation</h3>
+<ul><li>Performed a deep audit: hardcoded API keys, 68 npm vulnerabilities, and many</li></ul>
+<p>  deprecated/dead dependencies were identified.</p>
+<ul><li>Migrated the build system from <strong>Create React App to Vite 8</strong>.</li><li>Upgraded all major libraries: <strong>React 19, Ant Design 6, React Router 7</strong>,</li></ul>
+<p>  Redux Toolkit 2, and replaced <code>moment</code> with <code>dayjs</code>.</p>
+<ul><li>Removed unused dependencies (<code>axios</code>, <code>newsapi</code>, <code>html-react-parser</code>) and the</li></ul>
+<p>  obsolete service-worker tooling.</p>
+<ul><li>Moved all API keys into a git-ignored <code>.env</code> file.</li></ul>
+<h3 id="phase-2-ui-redesign">Phase 2 — UI Redesign</h3>
+<ul><li>Built a <strong>modern dark-dashboard design system</strong> with a gold/amber accent.</li><li>Added a full <strong>dark/light theme</strong> with a toggle, driven by Ant Design's theme</li></ul>
+<p>  engine and CSS variables.</p>
+<ul><li>Replaced brittle responsive hacks with proper grid/flex layouts that adapt</li></ul>
+<p>  cleanly from desktop to mobile.</p>
+<h3 id="phase-3-feature-expansion">Phase 3 — Feature Expansion</h3>
+<ul><li><strong>Portfolio</strong> with live profit/loss and an allocation donut chart.</li><li><strong>Watchlist</strong> of starred coins.</li><li><strong>Live prices</strong> that auto-refresh and flash green/red on change.</li><li><strong>Sparklines</strong> (mini trend charts) on every coin card.</li><li><strong>Sort &amp; filter</strong> controls and a <strong>Top Gainers / Top Losers</strong> section.</li><li><strong>Fear &amp; Greed index</strong> and accurate <strong>global market stats</strong> widgets.</li><li>A global <strong>currency selector</strong> (USD, EUR, GBP, BTC, ETH).</li><li>A <strong>price converter</strong> on each coin detail page.</li></ul>
+<h3 id="phase-4-navigation-redesign">Phase 4 — Navigation Redesign</h3>
+<ul><li>Restructured the sidebar: brand on top, navigation in the middle, and the</li></ul>
+<p>  <strong>theme toggle + currency selector pinned to the bottom</strong>.</p>
+<ul><li>Added gradient backgrounds, an active-item highlight, and a polished mobile</li></ul>
+<p>  drop-down menu.</p>
+<hr>
+<h2 id="4-technology-stack">4. Technology Stack</h2>
+<table><thead><tr><th>Area</th><th>Technology</th></tr></thead><tbody><tr><td>Framework</td><td>React 19</td></tr><tr><td>Build tool</td><td>Vite 8</td></tr><tr><td>UI library</td><td>Ant Design 6</td></tr><tr><td>State / data</td><td>Redux Toolkit 2 + RTK Query</td></tr><tr><td>Routing</td><td>React Router 7</td></tr><tr><td>Charts</td><td>Chart.js 4 + react-chartjs-2</td></tr><tr><td>Dates</td><td>Day.js</td></tr><tr><td>PWA</td><td>vite-plugin-pwa (Workbox)</td></tr><tr><td>Testing</td><td>Vitest (configured)</td></tr></tbody></table>
+<p>Data sources: <strong>Coinranking</strong> (via RapidAPI), <strong>CoinGecko</strong>, <strong>NewsAPI</strong>, and <strong>alternative.me</strong> (Fear &amp; Greed).</p>
+<hr>
+<h2 id="5-key-metrics-before-vs-after">5. Key Metrics — Before vs After</h2>
+<table><thead><tr><th>Metric</th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Security vulnerabilities</td><td>68 (2 critical, 32 high)</td><td>0</td></tr><tr><td>Build tool</td><td>Create React App (deprecated)</td><td>Vite 8</td></tr><tr><td>Installed packages</td><td>~1,500</td><td>524</td></tr><tr><td>Theme support</td><td>Light only</td><td>Dark + Light toggle</td></tr><tr><td>User features</td><td>Read-only browsing</td><td>Portfolio, watchlist, live data, widgets</td></tr><tr><td>API key handling</td><td>Hardcoded in source</td><td>Environment variables</td></tr></tbody></table>
+<hr>
+<h2 id="6-known-limitations">6. Known Limitations</h2>
+<ul><li><strong>News in production</strong> — NewsAPI's free tier only allows requests from</li></ul>
+<p>  <code>localhost</code>, so the news feed will not load on a deployed site. It fails   gracefully with a message. A small server-side proxy or alternative source is   required to fix this in production.</p>
+<ul><li><strong>API key rotation pending</strong> — the original keys were moved to <code>.env</code> but not</li></ul>
+<p>  yet revoked; they remain in git history and should be rotated.</p>
+<ul><li><strong>Demo data key</strong> — the Coinranking demo key returns a truncated global market</li></ul>
+<p>  cap, so global statistics are sourced from CoinGecko instead.</p>
+<ul><li><strong>Bundle size</strong> — the initial JavaScript bundle is ~1.1 MB; route-level code</li></ul>
+<p>  splitting would reduce it.</p>
+<ul><li><strong>Automated tests</strong> — Vitest is configured but no test suites have been written</li></ul>
+<p>  yet.</p>
+<hr>
+<h2 id="7-future-roadmap">7. Future Roadmap</h2>
+<ul><li>Server-side proxy (e.g. a serverless function) to fix news and fully hide keys.</li><li>Route-level code splitting to cut initial load time.</li><li>Price alerts via the existing PWA service worker (push notifications).</li><li>A broader visual pass: bento-grid dashboard, richer cards, and motion.</li><li>A test suite covering state logic and key components.</li></ul>
+<hr>
+<h2 id="8-conclusion">8. Conclusion</h2>
+<p>CryptoVerse has evolved from an insecure, outdated demo into a modern, secure, and feature-rich crypto dashboard. The foundations — current tooling, a clean theming system, persistent local state, and a flexible API layer — make it straightforward to extend further. The remaining items are well understood and documented, providing a clear path forward.</p>
+
+  </section>
+
+  <section>
+    <span class="doc-tag">Part II · Documentation</span>
+    <h1 id="cryptoverse-technical-documentation">CryptoVerse — Technical Documentation</h1>
+<p>Developer reference for the CryptoVerse codebase: setup, structure, architecture, state, APIs, theming, and how to extend the project.</p>
+<hr>
+<h2 id="1-getting-started">1. Getting Started</h2>
+<p><strong>Prerequisites:</strong> Node.js 20.19+ or 22.12+ and npm.</p>
+<pre><code># 1. Install dependencies
+npm install
+
+# 2. Configure API keys
+cp .env.example .env   # then fill in your own keys
+
+# 3. Start the dev server
+npm run dev
+
+# Production build / preview
+npm run build
+npm run preview</code></pre>
+<p>You need free API keys from RapidAPI (Coinranking) and NewsAPI. The CoinGecko key is optional. All keys live in <code>.env</code>, which is git-ignored.</p>
+<p><strong>npm scripts:</strong></p>
+<table><thead><tr><th>Script</th><th>Action</th></tr></thead><tbody><tr><td><code>npm run dev</code></td><td>Start the Vite dev server</td></tr><tr><td><code>npm run build</code></td><td>Production build to <code>dist/</code></td></tr><tr><td><code>npm run preview</code></td><td>Preview the production build</td></tr><tr><td><code>npm test</code></td><td>Run Vitest</td></tr></tbody></table>
+<hr>
+<h2 id="2-project-structure">2. Project Structure</h2>
+<pre><code>cryptoverse/
+├─ index.html               App entry HTML (Vite)
+├─ vite.config.js           Vite + PWA + Vitest config
+├─ .env / .env.example      API keys
+├─ public/                  Static assets (icons, robots.txt)
+└─ src/
+   ├─ main.jsx              React entry: Router + Redux + Theme providers
+   ├─ App.jsx               Layout + routes
+   ├─ App.css               Full design system (themes, layout, components)
+   ├─ app/
+   │  ├─ store.js           Redux store + persistence subscriber
+   │  └─ storage.js         localStorage load/save helpers
+   ├─ features/             Redux state slices
+   │  ├─ watchlistSlice.js
+   │  ├─ portfolioSlice.js
+   │  └─ settingsSlice.js
+   ├─ services/             RTK Query API definitions
+   │  ├─ cryptoApi.js       Coinranking (coins, details, history)
+   │  ├─ cryptoExchange.js  CoinGecko (exchanges, global stats)
+   │  └─ cryptoNewsApi.js   NewsAPI (news fetch)
+   ├─ theme/ThemeProvider.jsx   Dark/light theme + Ant Design config
+   ├─ constants/currencies.js   Currency UUIDs
+   ├─ utils/format.js           Price/number/percent formatting
+   └─ components/               UI components (see section 7)</code></pre>
+<hr>
+<h2 id="3-architecture-data-flow">3. Architecture &amp; Data Flow</h2>
+<p>CryptoVerse is a client-only SPA. The data flow is:</p>
+<pre><code>External APIs  -&gt;  RTK Query / fetch  -&gt;  Redux store  -&gt;  React components</code></pre>
+<p>The core mental model:</p>
+<blockquote>A user action dispatches to a Redux slice; components re-read state with <code>useSelector</code>; data queries re-run when their arguments change; the UI updates. State that must survive a refresh is mirrored to <code>localStorage</code>; all visual theming is driven by CSS variables and Ant Design's theme engine.</blockquote>
+<p>Provider nesting (in <code>main.jsx</code>):</p>
+<pre><code>Router &gt; Redux Provider &gt; ThemeProvider &gt; App</code></pre>
+<hr>
+<h2 id="4-state-management">4. State Management</h2>
+<p>State lives in Redux Toolkit slices under <code>src/features/</code>.</p>
+<table><thead><tr><th>Slice</th><th>State</th><th>Actions</th></tr></thead><tbody><tr><td><code>watchlistSlice</code></td><td><code>ids: []</code></td><td><code>toggleWatch(uuid)</code></td></tr><tr><td><code>portfolioSlice</code></td><td><code>holdings: []</code></td><td><code>addHolding</code>, <code>removeHolding</code></td></tr><tr><td><code>settingsSlice</code></td><td><code>currency</code></td><td><code>setCurrency</code></td></tr></tbody></table>
+<p><strong>Persistence.</strong> <code>src/app/store.js</code> subscribes to the store and writes the three user slices to <code>localStorage</code> on every change. Each slice reads its initial value back on startup via <code>loadState</code>.</p>
+<pre><code>store.subscribe(() =&gt; {
+  const state = store.getState();
+  saveState("cv-watchlist", state.watchlist.ids);
+  saveState("cv-portfolio", state.portfolio.holdings);
+  saveState("cv-currency", state.settings.currency);
+});</code></pre>
+<p><strong>localStorage keys:</strong> <code>cv-theme</code>, <code>cv-watchlist</code>, <code>cv-portfolio</code>, <code>cv-currency</code>.</p>
+<p>A holding object has the shape:</p>
+<pre><code>{ id, uuid, name, symbol, iconUrl, quantity, buyPrice }</code></pre>
+<p><code>buyPrice</code> is always stored in USD so profit/loss math stays consistent regardless of the selected display currency.</p>
+<hr>
+<h2 id="5-api-layer">5. API Layer</h2>
+<p>Three data sources, each defined with RTK Query (or a plain <code>fetch</code>).</p>
+<h3 id="coinranking-servicescryptoapijs">Coinranking — <code>services/cryptoApi.js</code></h3>
+<table><thead><tr><th>Hook</th><th>Returns</th></tr></thead><tbody><tr><td><code>useGetCryptosQuery(args)</code></td><td>List of coins (+ sparklines)</td></tr><tr><td><code>useGetCryptoDetailsQuery(args)</code></td><td>Full detail for one coin</td></tr><tr><td><code>useGetCryptoHistoryQuery(args)</code></td><td>Price history for the chart</td></tr></tbody></table>
+<p><code>getCryptos</code> accepts <code>{ count, orderBy, orderDirection, referenceCurrencyUuid }</code>:</p>
+<ul><li><code>orderBy</code> / <code>orderDirection</code> drive <strong>sorting</strong> (<code>marketCap</code>, <code>price</code>,</li></ul>
+<p>  <code>24hVolume</code>, <code>change</code>). Top Gainers = <code>change</code> + <code>desc</code>; Top Losers = <code>asc</code>.</p>
+<ul><li><code>referenceCurrencyUuid</code> makes the API return prices in the chosen currency.</li></ul>
+<p><strong>Live prices</strong> use RTK Query polling:</p>
+<pre><code>useGetCryptosQuery(args, { pollingInterval: 30000 }); // refetch every 30s</code></pre>
+<h3 id="coingecko-servicescryptoexchangejs">CoinGecko — <code>services/cryptoExchange.js</code></h3>
+<table><thead><tr><th>Hook</th><th>Returns</th></tr></thead><tbody><tr><td><code>useGetCryptoExchangeQuery()</code></td><td>Ranked exchanges</td></tr><tr><td><code>useGetGlobalStatsQuery()</code></td><td>Global market cap, BTC dominance, 24h change</td></tr></tbody></table>
+<p>Global stats come from CoinGecko because the Coinranking demo key returns a truncated total market cap.</p>
+<h3 id="newsapi-servicescryptonewsapijs">NewsAPI — <code>services/cryptoNewsApi.js</code></h3>
+<p><code>fetchCryptoNews(category, count, searchQuery, sortBy)</code> calls NewsAPI directly. Note: the free tier only works from <code>localhost</code>.</p>
+<h3 id="alternativeme">alternative.me</h3>
+<p>The Fear &amp; Greed index is fetched directly inside <code>components/FearGreed.jsx</code>.</p>
+<hr>
+<h2 id="6-theming-system">6. Theming System</h2>
+<p><code>src/theme/ThemeProvider.jsx</code> controls both layers of the theme:</p>
+<ol><li><strong>Ant Design components</strong> — a <code>ConfigProvider</code> swaps <code>darkAlgorithm</code> /</li></ol>
+<p>   <code>defaultAlgorithm</code> and sets <code>colorPrimary</code> to the gold accent <code>#f7a600</code>.</p>
+<ol><li><strong>Custom CSS</strong> — a <code>data-theme="dark" | "light"</code> attribute on the <code>&lt;html&gt;</code></li></ol>
+<p>   element flips CSS variables defined in <code>App.css</code> (<code>--bg</code>, <code>--text</code>,    <code>--card-bg</code>, and so on).</p>
+<p>Usage:</p>
+<pre><code>import { useTheme } from "../theme/ThemeProvider";
+const { mode, toggleTheme } = useTheme();</code></pre>
+<p>The chosen mode persists to <code>localStorage</code> under <code>cv-theme</code>.</p>
+<hr>
+<h2 id="7-components-reference">7. Components Reference</h2>
+<table><thead><tr><th>Component</th><th>Purpose</th></tr></thead><tbody><tr><td><code>Navbar</code></td><td>Sidebar: brand, navigation, currency + theme controls</td></tr><tr><td><code>HomePage</code></td><td>Composes global stats, widgets, top coins, news</td></tr><tr><td><code>Cryptocurrencies</code></td><td>Coin grid with search/sort; also serves watchlist mode</td></tr><tr><td><code>CryptoDetails</code></td><td>Single coin: stats, chart, converter, links</td></tr><tr><td><code>Portfolio</code></td><td>Holdings, live P&amp;L, allocation donut</td></tr><tr><td><code>Exchanges</code></td><td>Ranked exchange list</td></tr><tr><td><code>News</code></td><td>Filterable news feed</td></tr><tr><td><code>LineChart</code></td><td>Price-history chart (theme-aware)</td></tr><tr><td><code>Sparkline</code></td><td>Inline-SVG mini trend chart</td></tr><tr><td><code>AnimatedPrice</code></td><td>Price that flashes green/red on change</td></tr><tr><td><code>WatchButton</code></td><td>Star toggle for the watchlist</td></tr><tr><td><code>Converter</code></td><td>Coin-to-fiat calculator</td></tr><tr><td><code>GlobalStats</code></td><td>Global market stat tiles</td></tr><tr><td><code>FearGreed</code></td><td>Fear &amp; Greed gauge</td></tr><tr><td><code>MarketMovers</code></td><td>Top gainers / losers lists</td></tr><tr><td><code>Loader</code></td><td>Loading spinner</td></tr></tbody></table>
+<hr>
+<h2 id="8-key-feature-logic">8. Key Feature Logic</h2>
+<p><strong>Sparkline</strong> (<code>Sparkline.jsx</code>) — draws a hand-built SVG <code>&lt;path&gt;</code> from the 24 price points the API returns, normalised with <code>(price - min) / range</code>. Using SVG instead of a Chart.js canvas keeps 100 cards fast.</p>
+<p><strong>AnimatedPrice</strong> (<code>AnimatedPrice.jsx</code>) — a <code>useRef</code> stores the previous price; a <code>useEffect</code> compares old vs new on each render and flashes green (up) or red (down) for ~900 ms.</p>
+<p><strong>WatchButton</strong> (<code>WatchButton.jsx</code>) — cards are wrapped in a <code>&lt;Link&gt;</code>, so the star calls <code>preventDefault()</code> and <code>stopPropagation()</code> to avoid navigating when toggled.</p>
+<p><strong>Portfolio P&amp;L</strong> (<code>Portfolio.jsx</code>) — for each holding:</p>
+<pre><code>value = currentPrice * quantity
+cost  = buyPrice * quantity
+pnl   = value - cost
+pnl%  = pnl / cost * 100</code></pre>
+<p>The portfolio always values in USD (<code>USD_UUID</code>) so buy-price math is unaffected by the display currency.</p>
+<p><strong>Currency threading</strong> — the navbar dispatches <code>setCurrency</code>; every data-driven component reads <code>useSelector(selectCurrency)</code> and passes <code>currency.uuid</code> into its query. RTK Query treats the new argument as a new request and refetches, so one dropdown re-prices the whole app.</p>
+<hr>
+<h2 id="9-routing">9. Routing</h2>
+<p>Defined in <code>App.jsx</code> with React Router 7:</p>
+<table><thead><tr><th>Path</th><th>Component</th></tr></thead><tbody><tr><td><code>/</code></td><td>HomePage</td></tr><tr><td><code>/cryptocurrencies</code></td><td>Cryptocurrencies</td></tr><tr><td><code>/watchlist</code></td><td>Cryptocurrencies (watchlist mode)</td></tr><tr><td><code>/portfolio</code></td><td>Portfolio</td></tr><tr><td><code>/coin/:uuid</code></td><td>CryptoDetails</td></tr><tr><td><code>/exchanges</code></td><td>Exchanges</td></tr><tr><td><code>/news</code></td><td>News</td></tr></tbody></table>
+<hr>
+<h2 id="10-environment-variables">10. Environment Variables</h2>
+<p>All client variables must be prefixed with <code>VITE_</code> to be exposed to the app.</p>
+<table><thead><tr><th>Variable</th><th>Purpose</th></tr></thead><tbody><tr><td><code>VITE_RAPIDAPI_KEY</code></td><td>Coinranking key (RapidAPI)</td></tr><tr><td><code>VITE_RAPIDAPI_HOST</code></td><td>Coinranking host</td></tr><tr><td><code>VITE_NEWS_API_KEY</code></td><td>NewsAPI key</td></tr><tr><td><code>VITE_COINGECKO_API_KEY</code></td><td>CoinGecko key (optional)</td></tr></tbody></table>
+<p>Note: in a pure client app, these values ship in the built JavaScript and are not truly secret. To keep keys private, proxy the requests through a backend.</p>
+<hr>
+<h2 id="11-how-to-extend">11. How to Extend</h2>
+<p><strong>Add a new page:</strong></p>
+<ol><li>Create a component in <code>src/components/</code> and export it from</li></ol>
+<p>   <code>src/components/index.js</code>.</p>
+<ol><li>Add a <code>&lt;Route&gt;</code> in <code>App.jsx</code>.</li><li>Add an entry to <code>navItems</code> in <code>Navbar.jsx</code>.</li></ol>
+<p><strong>Add a new piece of persistent state:</strong></p>
+<ol><li>Create a slice in <code>src/features/</code>.</li><li>Register its reducer in <code>src/app/store.js</code> and persist it in the subscriber.</li><li>Read it anywhere with <code>useSelector</code>.</li></ol>
+<p><strong>Add a new API endpoint:</strong></p>
+<ol><li>Add an <code>endpoints</code> entry to the relevant file in <code>src/services/</code>.</li><li>Export the generated hook and use it in a component.</li></ol>
+<hr>
+<h2 id="12-build-deploy">12. Build &amp; Deploy</h2>
+<ul><li><code>npm run build</code> outputs a static site to <code>dist/</code>.</li><li>Any static host (Vercel, Netlify, GitHub Pages) can serve it.</li><li>Set the <code>VITE_*</code> environment variables in the host's dashboard.</li><li>The app is an installable PWA; the service worker is generated at build time by</li></ul>
+<p>  <code>vite-plugin-pwa</code>.</p>
+
+  </section>
+
+</body></html>

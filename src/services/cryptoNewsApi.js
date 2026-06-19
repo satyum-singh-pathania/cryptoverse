@@ -1,4 +1,4 @@
-const apiKey = "a50a5f5c3ece450f802bfd43ff7f739d";
+const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
 export const fetchCryptoNews = async (
   newsCategory,

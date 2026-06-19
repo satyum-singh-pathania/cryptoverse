@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const cryptoApiHeaders = {
-  "X-RapidAPI-Key": "3fb181ae5cmsh07eb1cad9e70b61p127d25jsn682c46ac743b",
-  "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
+  "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
+  "X-RapidAPI-Host": import.meta.env.VITE_RAPIDAPI_HOST,
 };
 
 const baseUrl = "https://coinranking1.p.rapidapi.com";
@@ -14,14 +14,38 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (count) => createRequest(`/coins?limit=${count}`),
+      query: ({
+        count = 50,
+        orderBy = "marketCap",
+        orderDirection = "desc",
+        referenceCurrencyUuid,
+      } = {}) => {
+        const params = new URLSearchParams({
+          limit: String(count),
+          orderBy,
+          orderDirection,
+        });
+        if (referenceCurrencyUuid)
+          params.set("referenceCurrencyUuid", referenceCurrencyUuid);
+        return createRequest(`/coins?${params.toString()}`);
+      },
     }),
     getCryptoDetails: builder.query({
-      query: (uuid) => createRequest(`/coin/${uuid}`),
+      query: ({ uuid, referenceCurrencyUuid }) => {
+        const params = new URLSearchParams();
+        if (referenceCurrencyUuid)
+          params.set("referenceCurrencyUuid", referenceCurrencyUuid);
+        const qs = params.toString();
+        return createRequest(`/coin/${uuid}${qs ? `?${qs}` : ""}`);
+      },
     }),
     getCryptoHistory: builder.query({
-      query: ({ uuid, timePeriod }) =>
-        createRequest(`/coin/${uuid}/history?timePeriod=${timePeriod}`),
+      query: ({ uuid, timePeriod, referenceCurrencyUuid }) => {
+        const params = new URLSearchParams({ timePeriod });
+        if (referenceCurrencyUuid)
+          params.set("referenceCurrencyUuid", referenceCurrencyUuid);
+        return createRequest(`/coin/${uuid}/history?${params.toString()}`);
+      },
     }),
   }),
 });

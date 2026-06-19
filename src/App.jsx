@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import "./App.css";
-import "antd/dist/reset.css";
 import { Route, Link, Routes } from "react-router-dom";
 import { Layout, Typography, Space } from "antd";
 
@@ -12,6 +10,7 @@ import {
   Cryptocurrencies,
   HomePage,
   CryptoDetails,
+  Portfolio,
 } from "./components";
 
 function App() {
@@ -24,15 +23,13 @@ function App() {
         <Layout>
           <div className="routes">
             <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route exact path="/exchanges" element={<Exchanges />} />
-              <Route
-                exact
-                path="/cryptocurrencies"
-                element={<Cryptocurrencies />}
-              />
-              <Route exact path="/coin/:uuid" element={<CryptoDetails />} />
-              <Route exact path="/news" element={<News />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/exchanges" element={<Exchanges />} />
+              <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+              <Route path="/watchlist" element={<Cryptocurrencies watchlistOnly />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/coin/:uuid" element={<CryptoDetails />} />
+              <Route path="/news" element={<News />} />
             </Routes>
           </div>
         </Layout>
@@ -41,8 +38,8 @@ function App() {
             level={5}
             style={{ color: "white", textAlign: "center" }}
           >
-            Copyright © 2021
-            <Link to="/">Cryptoverse Inc.</Link> <br />
+            Copyright © {new Date().getFullYear()}{" "}
+            <Link to="/">CryptoVerse Inc.</Link> <br />
             All Rights Reserved.
           </Typography.Title>
           <Space>

@@ -1,43 +1,109 @@
-# 💰 Cryptoverse: A Real-Time Portal to Stay Updated with the Blockchain World
+# 💰 CryptoVerse
 
-## 👀 [Demo Link](https://crypto-verse-pwa.vercel.app/)
+> A real-time cryptocurrency dashboard — live prices, interactive charts, a personal portfolio with profit/loss tracking, a watchlist, market sentiment, and news. Built as an installable Progressive Web App.
 
-Welcome to Cryptoverse! This comprehensive React application is designed to keep you ahead in the ever-evolving crypto world, offering real-time data, insightful news, and in-depth analysis.
+## 👀 [Live Demo](https://crypto-verse-pwa.vercel.app/)
 
-## 🔑 Key Features:
+CryptoVerse lets you track hundreds of coins in real time, dig into detailed
+stats and price history, manage a portfolio, and gauge the mood of the market —
+all in a fast, responsive, dark/light themed interface.
 
-- 🚚 **Live Market Data**: Track current prices, charts, and historical trends for hundreds of cryptocurrencies via the [Coinranking Rapid API](https://rapidapi.com/Coinranking/api/coinranking1).
-- 🧠 **Smart News**: Stay informed with news that can be filtered based on your preferred coin using the [News API](https://newsapi.org/).
-- 📉 **Interactive Charts and Analysis**: Visualize price changes with interactive charts powered by Chart.js.
-- 🧐 **Cryptocurrency Details**: Access detailed information about coins, including their exchanges, history, and key metrics through the [Coingeko REST API](https://www.coingecko.com/en/api).
-- 📲 **User-Friendly and Responsive Design**: Enjoy a seamless experience with a responsive interface built using ANTD UI.
-- 🧑‍💼 **Data Management**: Experience efficient state management and API calls with Redux-Toolkit and RTK Query, ensuring a smooth and responsive user experience.
-- 🔐 **Secure API Key Handling**: Protect your API keys with an .env file, prioritizing security and privacy.
-- 📱 **Progressive Web App (PWA)**: Install Cryptoverse as a mobile app for offline access and a native app-like experience.
+---
 
-## 👩‍💻 Technologies Used
+## ✨ Features
 
-- `React`
-- `Redux-Toolkit`
-- `RTK Query`
-- `REST API + Rapid API`
-- `Ant Design` (UI Framework of React)
-- `HTML/JSX`
-- `CSS`
-- `JavaScript`
-- `Chart.js`
-- `PWA`
+| | Feature |
+| --- | --- |
+| 📈 | **Live prices** — auto-refresh every 30s with green/red flash on change |
+| 📊 | **Sparklines** — a 7-day trend chart on every coin card |
+| 💼 | **Portfolio** — track holdings with live profit/loss and an allocation donut |
+| ⭐ | **Watchlist** — star coins to a personal, persistent list |
+| 🔃 | **Sort & filter** — by market cap, price, volume, or 24h change |
+| 🚀 | **Market movers** — top gainers / losers at a glance |
+| 😨 | **Fear & Greed index** + accurate global stats & BTC dominance |
+| 💱 | **Currency selector** — USD, EUR, GBP, BTC, ETH (re-prices the whole app) |
+| 🧮 | **Converter** — coin-to-fiat calculator on each detail page |
+| 🌗 | **Dark / light themes** with a gold accent and one-tap toggle |
+| 📰 | **News** — filterable crypto news feed |
+| 📱 | **PWA** — installable, offline-capable, app-like experience |
 
-## ✍️ Development Process
+---
 
-### 🤠 My API Playground
-Eager to dive into APIs and Redux Toolkit, I chose to build Cryptoverse as my testbed. I started by exploring RapidAPI for free data sources and crafting a clean layout, complete with smooth routing and a robust Redux store. The homepage serves as a launchpad, offering glimpses into the Cryptocurrencies and News pages.
+## 🚀 Getting Started
 
-### 😵 Cryptocurrency Showcase
-On the Cryptocurrencies page, I showcased 100 digital coins in all their glory. The Cryptodetails page dives deeper, revealing each coin's historical price charts powered by Chart.js, thanks to inspiration from JavaScript Mastery. The News page features a dynamic feed with filters to keep you updated on specific coins. Finally, the Exchange page provides a one-stop shop for all trading needs, displaying exchange options and stats for every crypto.
+**Prerequisites:** Node.js 20.19+ or 22.12+
 
-### 😀 The Journey
-This project was a wild ride, with every API challenge and Redux puzzle making it worth the effort. Adding PWA functionality was the cherry on top, allowing users to install Cryptoverse as a mobile app and access it offline, enhancing the user experience.
+```bash
+# 1. Install dependencies
+npm install
 
-## 📲 Progressive Web App (PWA)
-Cryptoverse is not just a web app; it's also a PWA! This means you can install it on your mobile device and enjoy offline access, giving you the convenience of a native app-like experience. This feature makes it easier to stay updated with the latest in the crypto world, even when you're on the go.
+# 2. Configure API keys
+cp .env.example .env   # then fill in your own keys
+
+# 3. Start the dev server
+npm run dev
+
+# Production build / preview
+npm run build
+npm run preview
+```
+
+You'll need free API keys from [RapidAPI (Coinranking)](https://rapidapi.com/Coinranking/api/coinranking1)
+and [NewsAPI](https://newsapi.org/). The [CoinGecko](https://www.coingecko.com/en/api)
+key is optional. Keys live in `.env`, which is git-ignored — never commit it.
+
+> **Note:** NewsAPI's free tier only allows requests from `localhost`, so the news
+> feed works in development but not on a deployed site. A small server-side proxy
+> or an alternative source is needed for production.
+
+---
+
+## 🛠 Tech Stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | React 19 |
+| Build tool | Vite 8 |
+| UI library | Ant Design 6 |
+| State / data | Redux Toolkit 2 + RTK Query |
+| Routing | React Router 7 |
+| Charts | Chart.js 4 + react-chartjs-2 |
+| Dates | Day.js |
+| PWA | vite-plugin-pwa (Workbox) |
+| Testing | Vitest |
+
+**Data sources:** Coinranking (RapidAPI), CoinGecko, NewsAPI, and alternative.me
+(Fear & Greed).
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├─ main.jsx            React entry: Router + Redux + Theme providers
+├─ App.jsx             Layout + routes
+├─ App.css             Design system (themes, layout, components)
+├─ app/                Redux store + localStorage persistence
+├─ features/           State slices: watchlist, portfolio, settings
+├─ services/           RTK Query APIs (Coinranking, CoinGecko, NewsAPI)
+├─ theme/              Dark/light theme provider
+├─ utils/format.js     Price / money / number formatting
+└─ components/         UI components & pages
+```
+
+---
+
+## 📚 Documentation
+
+Full technical documentation and a project report are in [`docs/`](./docs):
+
+- [`DOCUMENTATION.md`](./docs/DOCUMENTATION.md) — architecture, state, APIs, theming, how to extend
+- [`REPORT.md`](./docs/REPORT.md) — project overview, work completed, metrics
+- `CryptoVerse-Documentation.pdf` — both, as a styled PDF (`node docs/build-pdf.mjs` to rebuild)
+
+---
+
+## 📄 License
+
+Released under the [MIT License](./LICENSE).
