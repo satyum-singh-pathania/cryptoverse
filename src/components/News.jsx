@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography, Row, Col, Card, Select } from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { fetchCryptoNews } from "../services/cryptoNewsApi";
+import { fetchCryptoNews, NEWS_SOURCES } from "../services/cryptoNewsApi";
 import Avvvatars from "avvvatars-react";
 import Loader from "./Loader";
 
@@ -10,46 +10,44 @@ dayjs.extend(relativeTime);
 
 const { Text, Title } = Typography;
 
-const categoryOptions = [
-  "Cryptocurrency",
-  "Blockchain",
-  "Finance",
-  "Technology",
-  "Regulation",
-  "Industry Updates",
-].map((value) => ({ label: value, value }));
-
+const sourceOptions = NEWS_SOURCES.map((s) => ({
+  label: s.label,
+  value: s.value,
+}));
 const sortOptions = [
-  { label: "Latest", value: "publishedAt" },
-  { label: "Earliest", value: "-publishedAt" },
+  { label: "Latest", value: "latest" },
+  { label: "Earliest", value: "earliest" },
 ];
 
 export const News = ({ simplified }) => {
   const [cryptoNews, setCryptoNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery] = useState("");
-  const [category, setCategory] = useState("Cryptocurrency");
-  const [sortBy, setSortBy] = useState("publishedAt");
-  const count = simplified ? 10 : 100;
+  const [feedUrl, setFeedUrl] = useState(NEWS_SOURCES[0].value);
+  const [sortBy, setSortBy] = useState("latest");
+  const count = simplified ? 9 : 30;
 
   useEffect(() => {
+    let active = true;
     const getCryptoNews = async () => {
       setLoading(true);
       try {
-        const newsData = await fetchCryptoNews(category, count, searchQuery, sortBy);
-        setCryptoNews(newsData.articles);
+        const articles = await fetchCryptoNews({ feedUrl, count, sortBy });
+        if (!active) return;
+        setCryptoNews(articles);
         setError(null);
       } catch (err) {
         console.error(err);
-        setError("Failed to load news. Please try again later.");
+        if (active) setError("Failed to load news. Please try again later.");
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
-
     getCryptoNews();
-  }, [count, category, searchQuery, sortBy]);
+    return () => {
+      active = false;
+    };
+  }, [feedUrl, count, sortBy]);
 
   if (loading) return <Loader />;
   if (error) return <p className="news-error">{error}</p>;
@@ -59,17 +57,17 @@ export const News = ({ simplified }) => {
       {!simplified && (
         <div className="news-filters">
           <Select
-            defaultValue="Cryptocurrency"
-            style={{ width: 150, margin: "0 10px" }}
-            onChange={(value) => setCategory(value)}
+            value={feedUrl}
+            style={{ width: 180 }}
+            onChange={setFeedUrl}
             size="middle"
             className="news-select"
-            options={categoryOptions}
+            options={sourceOptions}
           />
           <Select
-            defaultValue="publishedAt"
+            value={sortBy}
             style={{ width: 150 }}
-            onChange={(value) => setSortBy(value)}
+            onChange={setSortBy}
             size="middle"
             className="news-select"
             options={sortOptions}
@@ -87,8 +85,9 @@ export const News = ({ simplified }) => {
                       ? `${news.title.substring(0, 60)}...`
                       : news.title}
                   </Title>
-
-                  <img src={news.urlToImage} alt="news" className="img" />
+                  {news.image && (
+                    <img src={news.image} alt="news" className="img" />
+                  )}
                 </div>
                 <p>
                   {news.description && news.description.length > 200
@@ -98,10 +97,10 @@ export const News = ({ simplified }) => {
                 <div className="provider-container">
                   <div>
                     <Avvvatars
-                      value={news.source.name}
-                      displayValue={news.source.name.slice(0, 2).toUpperCase()}
+                      value={news.source}
+                      displayValue={news.source.slice(0, 2).toUpperCase()}
                     />
-                    <Text className="provider-name">{news.source.name}</Text>
+                    <Text className="provider-name">{news.source}</Text>
                   </div>
                   <Text>{dayjs(news.publishedAt).fromNow()}</Text>
                 </div>

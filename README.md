@@ -48,13 +48,10 @@ npm run build
 npm run preview
 ```
 
-You'll need free API keys from [RapidAPI (Coinranking)](https://rapidapi.com/Coinranking/api/coinranking1)
-and [NewsAPI](https://newsapi.org/). The [CoinGecko](https://www.coingecko.com/en/api)
-key is optional. Keys live in `.env`, which is git-ignored — never commit it.
-
-> **Note:** NewsAPI's free tier only allows requests from `localhost`, so the news
-> feed works in development but not on a deployed site. A small server-side proxy
-> or an alternative source is needed for production.
+You'll need a free API key from [RapidAPI (Coinranking)](https://rapidapi.com/Coinranking/api/coinranking1).
+The [CoinGecko](https://www.coingecko.com/en/api) key is optional, and news works
+out of the box (via [rss2json](https://rss2json.com), no key required). Keys live
+in `.env`, which is git-ignored — never commit it.
 
 ---
 
@@ -72,8 +69,8 @@ key is optional. Keys live in `.env`, which is git-ignored — never commit it.
 | PWA | vite-plugin-pwa (Workbox) |
 | Testing | Vitest |
 
-**Data sources:** Coinranking (RapidAPI), CoinGecko, NewsAPI, and alternative.me
-(Fear & Greed).
+**Data sources:** Coinranking (RapidAPI), CoinGecko, rss2json (crypto news feeds),
+and alternative.me (Fear & Greed).
 
 ---
 
